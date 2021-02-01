@@ -1,0 +1,39 @@
+.swiper-slide {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  margin-left: 10px;
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: blue;
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: green;
+}
+
+.swiper-slide:nth-child(4n) {
+  background-color: yellow;
+}
+.swiper-slide:nth-child(5n) {
+  background-color: pink;
+}
+.swiper-slide:nth-child(6n) {
+  background-color: black;
+}
+.swiper-wrapper {
+  display: flex;
+  transition: transform 2s ease;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  height: 20px;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.is-hidden {
+  display: none;
+}
