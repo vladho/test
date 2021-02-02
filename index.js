@@ -1,59 +1,40 @@
-const prevBtnRef = document.querySelector(".swiper-button-prev")
-const nextBtnRef = document.querySelector(".swiper-button-next")
+const prevBtnRef = document.querySelector(".swiper-button-prev");
+const nextBtnRef = document.querySelector(".swiper-button-next");
 
-const swiperSlide = document.querySelector(".swiper-slide")
-const allBoxPseudoArrayRef = document.querySelectorAll(".swiper-slide")
+// const swiperSlide = document.querySelector(".swiper-slide");
 
-const allBoxArrayRef = [...allBoxPseudoArrayRef]
+const allBoxPseudoArrayRef = document.querySelectorAll(".swiper-slide");
 
-const swiperWrapperRef = document.querySelector(".swiper-wrapper")
+const allBoxArrayRef = [...allBoxPseudoArrayRef];
 
-let current = 0
-let contain = null
-nextBtnRef.addEventListener("click", () => {
-  //дальше расматриваем все наши боксы отдельно
-  for (let i = 0; i < allBoxArrayRef.length; i += 1) {
-    if (current === allBoxArrayRef.length - 3) {
-      return
-    }
-    if (i === current) {
-      // swiperWrapperRef.classList.add("is-visible-left")
-      allBoxArrayRef.map((item) => item.classList.add("is-visible-left"))
-      setTimeout(() => {
-        allBoxArrayRef[i].classList.add("is-hidden")
-        // swiperWrapperRef.classList.remove("is-visible-left")
-        allBoxArrayRef.map((item) => item.classList.remove("is-visible-left"))
-      }, 300)
+const swiperWrapperRef = document.querySelector(".swiper-wrapper");
 
-      current += 1
-      return
-    }
-  }
-})
+let contain = null;
+
+const widthOfOneBlock = 150;
+const findMaxEl = (allBoxArrayRef.length - 4) * widthOfOneBlock;
+
+let transformForX = 0;
 
 prevBtnRef.addEventListener("click", () => {
-  // console.log(allBoxArrayRef.length)
-
-  //дальше расматриваем все наши боксы отдельно
-  for (let i = allBoxArrayRef.length - 1; i < allBoxArrayRef.length; i -= 1) {
-    //скрываем первый элемент, после бокса с классом is-hidden
-    if (current === 0) {
-      return
-    }
-    if (i === current - 1) {
-      allBoxArrayRef.map((item) => item.classList.add("is-visible-right"))
-
-      setTimeout(() => {
-        allBoxArrayRef.map((item) => item.classList.remove("is-visible-right"))
-      }, 300)
-
-      setTimeout(() => {
-        allBoxArrayRef[i].classList.remove("is-hidden")
-      }, 300)
-
-      current -= 1
-
-      return
-    }
+  if (transformForX > -widthOfOneBlock) {
+    return;
   }
-})
+
+  transformForX += 150;
+
+  swiperWrapperRef.style.transform = `translate3d(${
+    transformForX + "px"
+  }, 0, 0)`;
+});
+
+nextBtnRef.addEventListener("click", () => {
+  if (transformForX < -findMaxEl) {
+    return;
+  }
+
+  transformForX -= 150;
+  swiperWrapperRef.style.transform = `translate3d(${
+    transformForX + "px"
+  }, 0, 0)`;
+});
