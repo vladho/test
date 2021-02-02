@@ -10,15 +10,16 @@ const swiperWrapperRef = document.querySelector(".swiper-wrapper");
 let contain = null;
 
 const widthOfOneBlock = 150;
-const findMaxEl = (allBoxArrayRef.length - 4) * widthOfOneBlock;
-
+const findMaxEl = (allBoxArrayRef.length - 2) * widthOfOneBlock;
+console.log(findMaxEl);
 let transformForX = 0;
 
 prevBtnRef.addEventListener("click", () => {
+  console.log(transformForX);
   if (transformForX > -widthOfOneBlock) {
     return;
   }
-
+  console.log(transformForX);
   transformForX += 150;
 
   swiperWrapperRef.style.transform = `translate3d(${
@@ -27,9 +28,11 @@ prevBtnRef.addEventListener("click", () => {
 });
 
 nextBtnRef.addEventListener("click", () => {
+  // console.log(transformForX);
   if (transformForX < -findMaxEl) {
     return;
   }
+  // console.log(transformForX);
 
   transformForX -= 150;
   swiperWrapperRef.style.transform = `translate3d(${
