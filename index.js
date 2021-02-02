@@ -1,55 +1,59 @@
-const prevBtnRef = document.querySelector(".swiper-button-prev");
-const nextBtnRef = document.querySelector(".swiper-button-next");
+const prevBtnRef = document.querySelector(".swiper-button-prev")
+const nextBtnRef = document.querySelector(".swiper-button-next")
 
-const swiperSlide = document.querySelector(".swiper-slide");
-const allBoxRef = document.querySelectorAll(".swiper-slide");
+const swiperSlide = document.querySelector(".swiper-slide")
+const allBoxPseudoArrayRef = document.querySelectorAll(".swiper-slide")
 
-const swiperWrapperRef = document.querySelector(".swiper-wrapper");
+const allBoxArrayRef = [...allBoxPseudoArrayRef]
 
-let current = 0;
+const swiperWrapperRef = document.querySelector(".swiper-wrapper")
 
+let current = 0
+let contain = null
 nextBtnRef.addEventListener("click", () => {
-  let contain = null;
-  //   console.log(current);
-
   //дальше расматриваем все наши боксы отдельно
-  for (let i = 0; i < allBoxRef.length; i += 1) {
-    // console.log(current);
-    allBoxRef[i].classList.add(`${i}`);
-
-    //скрываем первый элемент, после бокса с классом is-hidden
-    //     if (i === current) {
-    //       allBoxRef[i].classList.add("is-hidden");
-    //       console.log(allBoxRef[i]);
-    //       contain = allBoxRef[i].classList.contains("is-hidden");
-
-    //       console.log(contain);
-    //       current += 1;
-    //       return;
-    //     }
-    //   }
-    // });
-
+  for (let i = 0; i < allBoxArrayRef.length; i += 1) {
+    if (current === allBoxArrayRef.length - 3) {
+      return
+    }
     if (i === current) {
+      // swiperWrapperRef.classList.add("is-visible-left")
+      allBoxArrayRef.map((item) => item.classList.add("is-visible-left"))
       setTimeout(() => {
-        allBoxRef[i].classList.add("is-hidden");
-        // console.log(allBoxRef[i]);
-        contain = allBoxRef[i].classList.contains("is-hidden");
-      }, 300);
+        allBoxArrayRef[i].classList.add("is-hidden")
+        // swiperWrapperRef.classList.remove("is-visible-left")
+        allBoxArrayRef.map((item) => item.classList.remove("is-visible-left"))
+      }, 300)
 
-      swiperWrapperRef.classList.add("is-visible");
-
-      //   console.log(contain);
-      current += 1;
-      return;
+      current += 1
+      return
     }
   }
-});
+})
 
 prevBtnRef.addEventListener("click", () => {
-  const remove = () => {
-    swiperWrapperRef.classList.remove("is-visible");
-  };
+  // console.log(allBoxArrayRef.length)
 
-  remove();
-});
+  //дальше расматриваем все наши боксы отдельно
+  for (let i = allBoxArrayRef.length - 1; i < allBoxArrayRef.length; i -= 1) {
+    //скрываем первый элемент, после бокса с классом is-hidden
+    if (current === 0) {
+      return
+    }
+    if (i === current - 1) {
+      allBoxArrayRef.map((item) => item.classList.add("is-visible-right"))
+
+      setTimeout(() => {
+        allBoxArrayRef.map((item) => item.classList.remove("is-visible-right"))
+      }, 300)
+
+      setTimeout(() => {
+        allBoxArrayRef[i].classList.remove("is-hidden")
+      }, 300)
+
+      current -= 1
+
+      return
+    }
+  }
+})
