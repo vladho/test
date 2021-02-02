@@ -55,3 +55,19 @@
   margin-top: 20px;
   margin-left: 100px;
 }
+.indcator-item {
+  display: flex;
+  margin-top: 10px;
+}
+.indcator-box {
+  display: block;
+  background-color: red;
+  margin-left: 3px;
+  /* border-radius: 50%; */
+  width: 10px;
+  height: 10px;
+}
+
+.is-active {
+  background-color: green;
+}
