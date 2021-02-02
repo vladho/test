@@ -1,8 +1,6 @@
 const prevBtnRef = document.querySelector(".swiper-button-prev");
 const nextBtnRef = document.querySelector(".swiper-button-next");
 
-// const swiperSlide = document.querySelector(".swiper-slide");
-
 const allBoxPseudoArrayRef = document.querySelectorAll(".swiper-slide");
 
 const allBoxArrayRef = [...allBoxPseudoArrayRef];
